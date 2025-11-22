@@ -4,9 +4,6 @@ import { Program, BN } from "@coral-xyz/anchor";
 import {
     TOKEN_2022_PROGRAM_ID,
     ASSOCIATED_TOKEN_PROGRAM_ID,
-    createMint,
-    getOrCreateAssociatedTokenAccount,
-    mintTo,
     getAccount,
     createAssociatedTokenAccountIdempotentInstruction,
     createInitializeMint2Instruction,
@@ -191,9 +188,9 @@ describe("nft marketplace — token2022", () => {
             .accounts({
               auction: auction,
               seller: seller.publicKey,
-              nftMint: mint.publicKey,          // MUST match your Rust name
-              nftVault: vault, // PDA vault you created manually
-              sellerTokenAccount: sellerAta,   // 🟢 FIXED
+              nftMint: mint.publicKey,  
+              nftVault: vault, 
+              sellerTokenAccount: sellerAta,  
               associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
               tokenProgram: TOKEN_2022_PROGRAM_ID,
               systemProgram: SystemProgram.programId,
@@ -236,11 +233,7 @@ describe("nft marketplace — token2022", () => {
           })
           .signers([bidder])
           .rpc();
-  
-      // Fetch updated auction after the bid
-      // const updatedAuction = await program.account.auction.fetch(auction);
-      // console.log("highest bid:", updatedAuction.highestBid.toString());
-      // console.log("highest bidder:", updatedAuction.highestBidder.toBase58());
+
   });
 
     // -----------------------------
