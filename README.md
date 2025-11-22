@@ -380,21 +380,6 @@ await program.methods
   .rpc();
 ```
 
-## Program Structure
-
-```
-programs/nft-marketplace/
-├── src/
-│   ├── lib.rs              # Main program entry point
-│   ├── instructions/        # Instruction modules (unused in current implementation)
-│   │   ├── auction.rs
-│   │   ├── bid.rs
-│   │   ├── finalize.rs
-│   │   └── list.rs
-│   └── states/
-│       └── mod.rs           # Additional state structures
-```
-
 ### Key Components
 
 - **`lib.rs`**: Contains all program logic
@@ -510,10 +495,6 @@ Contributions are welcome! Please follow these steps:
 - Write tests for new features
 - Update documentation as needed
 - Ensure all tests pass before submitting PR
-
-## License
-
-This project is licensed under the ISC License - see the `package.json` file for details.
 
 ## Resources
 
