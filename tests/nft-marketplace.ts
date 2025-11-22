@@ -34,10 +34,6 @@ describe("nft marketplace — token2022", () => {
     const connection = provider.connection;
     const program = anchor.workspace
         .NftMarketplaceToken2022 as Program<nft_marketplace_token2022>;
-
-    // const seller = provider.wallet.publicKey;
-    // let nftMint: PublicKey;
-    // let sellerTokenAccount: PublicKey;
     const tokenProgram = TOKEN_2022_PROGRAM_ID;
     let auctionPda: PublicKey;
     let auctionBump: number;
@@ -104,11 +100,6 @@ describe("nft marketplace — token2022", () => {
       vault,
       tokenProgram,
     }
-    //
-    // Rent exemption for mint account
-    //
-
-
 
     // -----------------------------
     // 1. Setup mint + seller NFT
@@ -218,17 +209,11 @@ describe("nft marketplace — token2022", () => {
       // Fetch current auction state
       const auctionData = await program.account.auction.fetch(auction);
   
-      // Determine previous bidder (or none)
-      const previousBidder = auctionData.highestBidder.equals(PublicKey.default)
-          ? PublicKey.default      // first bid → no previous bidder
-          : auctionData.highestBidder;
-  
       await program.methods
           .placeBid(new BN(1_500_000))
           .accounts({
               auction: auction,           // MUST be the PDA, not auction struct
               bidder: bidder.publicKey,      // signer placing bid
-              // previousBidder: previousBidder, 
               systemProgram: SystemProgram.programId,
           })
           .signers([bidder])
@@ -274,7 +259,7 @@ describe("nft marketplace — token2022", () => {
           winner: winner,
           nftVault: vault,
           winnerAta: winnerAta,
-          sellerTokenAccount: sellerAta,   // <-- required!
+          sellerTokenAccount: sellerAta, 
           nftMint: mint.publicKey,
           tokenProgram: TOKEN_2022_PROGRAM_ID,
           systemProgram: SystemProgram.programId,
