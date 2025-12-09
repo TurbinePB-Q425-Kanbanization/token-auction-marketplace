@@ -1,4 +1,4 @@
-# NFT Marketplace on Solana
+# NFT Auctions on Solana
 
 A decentralized NFT marketplace built on Solana using the Anchor framework, supporting Token-2022 standard NFTs. This marketplace enables users to create auctions, place bids, and finalize sales in a trustless, on-chain environment.
 
